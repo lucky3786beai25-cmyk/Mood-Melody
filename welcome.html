@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Mood Melody</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Background gradient -->
+    <div class="welcome-background"></div>
+
+    <!-- Animated background elements -->
+    <div class="welcome-decorations">
+        <div class="float-note">🎵</div>
+        <div class="float-note" style="animation-delay: 0.5s">🎶</div>
+        <div class="float-note" style="animation-delay: 1s">♫</div>
+        <div class="float-note" style="animation-delay: 1.5s">🎵</div>
+    </div>
+
+    <!-- Welcome Container -->
+    <div class="welcome-container">
+        <!-- Logo Animation -->
+        <div class="welcome-logo-wrapper">
+            <div class="welcome-logo-container">
+                <div class="logo-pulse">
+                    <span class="logo-main">🎵</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Welcome Text -->
+        <div class="welcome-content">
+            <h1 class="welcome-title" id="welcomeTitle">
+                <span class="welcome-word">Welcome</span>
+                <span class="welcome-word">to</span>
+                <span class="welcome-word">Mood</span>
+                <span class="welcome-word">Melody</span>
+            </h1>
+            <p class="welcome-subtitle" id="welcomeSubtitle"></p>
+            
+            <!-- Waveform Animation -->
+            <div class="waveform-container">
+                <div class="wave" style="--delay: 0s"></div>
+                <div class="wave" style="--delay: 0.1s"></div>
+                <div class="wave" style="--delay: 0.2s"></div>
+                <div class="wave" style="--delay: 0.3s"></div>
+                <div class="wave" style="--delay: 0.4s"></div>
+                <div class="wave" style="--delay: 0.5s"></div>
+                <div class="wave" style="--delay: 0.6s"></div>
+            </div>
+
+            <!-- Loading animation -->
+            <div class="welcome-loader">
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+                <div class="loader-dot"></div>
+            </div>
+
+            <p class="welcome-message">Redirecting to home...</p>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        // Welcome page functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('userName') || 'Friend';
+            const welcomeSubtitle = document.getElementById('welcomeSubtitle');
+            
+            // Personalized greeting
+            welcomeSubtitle.textContent = `Welcome back, ${userName}!`;
+            
+            // Animate welcome title
+            const titleWords = document.querySelectorAll('.welcome-word');
+            titleWords.forEach((word, index) => {
+                setTimeout(() => {
+                    word.style.animation = 'fadeInUp 0.8s ease forwards';
+                }, index * 150);
+            });
+            
+            // Redirect to home after 4 seconds
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 4000);
+        });
+    </script>
+</body>
+</html>

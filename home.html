@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Melody - Home</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="home.html" class="nav-logo">
+                <span class="nav-logo-icon">🎵</span>
+                Mood Melody
+            </a>
+
+            <!-- Search Bar -->
+            <div class="search-wrapper">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="searchInput" 
+                    placeholder="Search songs, artists, moods..."
+                >
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+
+            <div class="nav-menu">
+                <a href="mood-detection.html" class="nav-link">
+                    <span class="nav-icon">🎯</span>
+                    Detect Mood
+                </a>
+                <a href="playlist.html" class="nav-link">
+                    <span class="nav-icon">📻</span>
+                    Playlists
+                </a>
+                <a href="favorites.html" class="nav-link">
+                    <span class="nav-icon">❤️</span>
+                    Favorites
+                </a>
+                <a href="about.html" class="nav-link">
+                    <span class="nav-icon">ℹ️</span>
+                    About
+                </a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="btn-profile" id="profileBtn" title="Profile menu">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E" alt="Profile" class="profile-avatar">
+                </button>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Profile Dropdown Menu -->
+    <div class="profile-menu" id="profileMenu">
+        <div class="profile-menu-header">
+            <div class="profile-menu-avatar">👤</div>
+            <div>
+                <p class="profile-menu-name" id="profileMenuName">User Name</p>
+                <p class="profile-menu-email" id="profileMenuEmail">user@example.com</p>
+            </div>
+        </div>
+        <div class="profile-menu-divider"></div>
+        <a href="favorites.html" class="profile-menu-item">💾 My Favorites</a>
+        <a href="#" class="profile-menu-item">⚙️ Settings</a>
+        <a href="#" class="profile-menu-item">🔔 Notifications</a>
+        <div class="profile-menu-divider"></div>
+        <button class="profile-menu-item" onclick="logout()">🚪 Logout</button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-gradient">Feel the Music</span>
+                    <span class="hero-subtitle">That Understands You</span>
+                </h1>
+                <p class="hero-description">Discover personalized playlists based on your mood in real-time</p>
+                
+                <div class="hero-actions">
+                    <a href="mood-detection.html" class="btn btn-primary btn-large">
+                        <span class="btn-icon">🎯</span>
+                        Start Mood Detection
+                    </a>
+                    <button class="btn btn-secondary btn-large" onclick="scrollToSection('trending')">
+                        <span class="btn-icon">📻</span>
+                        Explore Trending
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero Background Elements -->
+            <div class="hero-bg-elements">
+                <div class="bg-circle circle-1"></div>
+                <div class="bg-circle circle-2"></div>
+                <div class="bg-circle circle-3"></div>
+            </div>
+        </section>
+
+        <!-- Quick Mood Access -->
+        <section class="quick-moods">
+            <h2 class="section-title">Quick Access Moods</h2>
+            <div class="moods-grid">
+                <a href="mood-detection.html" class="mood-card" data-mood="happy">
+                    <span class="mood-emoji">😊</span>
+                    <span class="mood-name">Happy</span>
+                </a>
+                <a href="mood-detection.html" class="mood-card" data-mood="sad">
+                    <span class="mood-emoji">😢</span>
+                    <span class="mood-name">Sad</span>
+                </a>
+                <a href="mood-detection.html" class="mood-card" data-mood="relaxed">
+                    <span class="mood-emoji">😌</span>
+                    <span class="mood-name">Relaxed</span>
+                </a>
+                <a href="mood-detection.html" class="mood-card" data-mood="energetic">
+                    <span class="mood-emoji">⚡</span>
+                    <span class="mood-name">Energetic</span>
+                </a>
+                <a href="mood-detection.html" class="mood-card" data-mood="romantic">
+                    <span class="mood-emoji">💕</span>
+                    <span class="mood-name">Romantic</span>
+                </a>
+                <a href="mood-detection.html" class="mood-card" data-mood="focused">
+                    <span class="mood-emoji">🧠</span>
+                    <span class="mood-name">Focused</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Trending Songs Section -->
+        <section class="songs-section" id="trending">
+            <div class="section-header">
+                <h2 class="section-title">🔥 Trending Now</h2>
+                <a href="playlist.html" class="see-all-link">See All →</a>
+            </div>
+            <div class="songs-grid" id="trendingSongs">
+                <!-- Skeleton Loading -->
+                <div class="song-card skeleton-loading"></div>
+                <div class="song-card skeleton-loading"></div>
+                <div class="song-card skeleton-loading"></div>
+                <div class="song-card skeleton-loading"></div>
+            </div>
+        </section>
+
+        <!-- Recommended Section -->
+        <section class="songs-section">
+            <div class="section-header">
+                <h2 class="section-title">⭐ Recommended For You</h2>
+                <a href="playlist.html" class="see-all-link">See All →</a>
+            </div>
+            <div class="songs-grid" id="recommendedSongs">
+                <!-- Skeleton Loading -->
+                <div class="song-card skeleton-loading"></div>
+                <div class="song-card skeleton-loading"></div>
+                <div class="song-card skeleton-loading"></div>
+                <div class="song-card skeleton-loading"></div>
+            </div>
+        </section>
+
+        <!-- Recently Searched Moods -->
+        <section class="moods-history" id="moodsHistory" style="display: none;">
+            <h2 class="section-title">📜 Your Recent Moods</h2>
+            <div class="history-timeline" id="moodTimeline"></div>
+        </section>
+    </main>
+
+    <!-- Floating Music Player -->
+    <div class="mini-player" id="miniPlayer">
+        <div class="player-content">
+            <div class="player-song-info">
+                <div class="player-song-image" id="playerImage">🎵</div>
+                <div class="player-song-details">
+                    <p class="player-song-name" id="playerSongName">Select a song</p>
+                    <p class="player-song-artist" id="playerSongArtist">Artist</p>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button class="player-btn" id="playerPrev" title="Previous">
+                    <span>⏮️</span>
+                </button>
+                <button class="player-btn player-play" id="playerPlay" title="Play">
+                    <span id="playerPlayIcon">▶️</span>
+                </button>
+                <button class="player-btn" id="playerNext" title="Next">
+                    <span>⏭️</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/api-handler.js"></script>
+    <script src="js/music-player.js"></script>
+    <script src="js/ui-animations.js"></script>
+    <script src="js/storage.js"></script>
+    <script>
+        // Home page functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check authentication
+            if (!isAuthenticated()) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Load user data
+            loadUserProfile();
+            
+            // Load trending songs
+            loadTrendingSongs();
+            
+            // Load recommended songs
+            loadRecommendedSongs();
+            
+            // Load mood history
+            loadMoodHistory();
+            
+            // Setup event listeners
+            setupSearchListener();
+            setupProfileMenu();
+            setupMobileMenu();
+        });
+
+        // Load trending songs from API
+        async function loadTrendingSongs() {
+            try {
+                const songs = await fetchTrendingSongs();
+                displaySongs(songs, 'trendingSongs');
+            } catch (error) {
+                console.error('Error loading trending songs:', error);
+                showToast('Failed to load trending songs', 'error');
+            }
+        }
+
+        // Load recommended songs
+        async function loadRecommendedSongs() {
+            try {
+                const songs = await fetchRecommendedSongs();
+                displaySongs(songs, 'recommendedSongs');
+            } catch (error) {
+                console.error('Error loading recommended songs:', error);
+                showToast('Failed to load recommendations', 'error');
+            }
+        }
+
+        // Load mood history
+        function loadMoodHistory() {
+            const history = getMoodHistory();
+            if (history.length > 0) {
+                displayMoodHistory(history);
+                document.getElementById('moodsHistory').style.display = 'block';
+            }
+        }
+
+        // Display songs in grid
+        function displaySongs(songs, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            songs.slice(0, 8).forEach(song => {
+                const songCard = createSongCard(song);
+                container.appendChild(songCard);
+            });
+        }
+
+        // Create song card element
+        function createSongCard(song) {
+            const card = document.createElement('div');
+            card.className = 'song-card';
+            
+            const isFavorite = isSongFavorited(song.id);
+            const favoriteClass = isFavorite ? 'active' : '';
+            
+            card.innerHTML = `
+                <div class="song-image">
+                    <img src="${song.image || 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 200%27%3E%3Crect fill=%27%23333%27 width=%27200%27 height=%27200%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 font-size=%2748%27 text-anchor=%27middle%27 dy=%27.3em%27%3E🎵%3C/text%3E%3C/svg%3E'}" alt="${song.name}" class="song-img">
+                    <button class="play-btn" title="Play">
+                        <span>▶️</span>
+                    </button>
+                </div>
+                <div class="song-info">
+                    <p class="song-name">${song.name}</p>
+                    <p class="song-artist">${song.artist}</p>
+                    <div class="song-duration">${song.duration || '3:45'}</div>
+                </div>
+                <div class="song-actions">
+                    <button class="btn-favorite ${favoriteClass}" title="Add to favorites">
+                        ${isFavorite ? '❤️' : '🤍'}
+                    </button>
+                </div>
+            `;
+            
+            // Add event listeners
+            card.querySelector('.play-btn').addEventListener('click', () => {
+                playSong(song);
+            });
+            
+            card.querySelector('.btn-favorite').addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleFavorite(song, e.target.closest('.btn-favorite'));
+            });
+            
+            return card;
+        }
+
+        // Display mood history timeline
+        function displayMoodHistory(history) {
+            const timeline = document.getElementById('moodTimeline');
+            timeline.innerHTML = '';
+            
+            history.slice(0, 5).forEach(entry => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                item.innerHTML = `
+                    <div class="history-mood">${getMoodEmoji(entry.mood)}</div>
+                    <div class="history-info">
+                        <p class="history-mood-name">${capitalize(entry.mood)}</p>
+                        <p class="history-time">${formatTime(entry.timestamp)}</p>
+                    </div>
+                    <button class="history-btn" onclick="replayMood('${entry.mood}')" title="Replay this mood">
+                        🔄
+                    </button>
+                `;
+                timeline.appendChild(item);
+            });
+        }
+
+        // Setup search listener
+        function setupSearchListener() {
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                const query = e.target.value.trim();
+                
+                if (query.length < 2) {
+                    searchSuggestions.innerHTML = '';
+                    return;
+                }
+                
+                searchTimeout = setTimeout(() => {
+                    fetchSearchSuggestions(query);
+                }, 300);
+            });
+            
+            // Click outside to close suggestions
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.search-wrapper')) {
+                    searchSuggestions.innerHTML = '';
+                }
+            });
+        }
+
+        // Fetch search suggestions
+        async function fetchSearchSuggestions(query) {
+            try {
+                const suggestions = await searchSongs(query);
+                displaySearchSuggestions(suggestions);
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+            }
+        }
+
+        // Display search suggestions
+        function displaySearchSuggestions(suggestions) {
+            const container = document.getElementById('searchSuggestions');
+            container.innerHTML = '';
+            
+            suggestions.slice(0, 6).forEach(song => {
+                const item = document.createElement('div');
+                item.className = 'suggestion-item';
+                item.innerHTML = `
+                    <span class="suggestion-icon">🎵</span>
+                    <div>
+                        <p class="suggestion-title">${song.name}</p>
+                        <p class="suggestion-subtitle">${song.artist}</p>
+                    </div>
+                `;
+                item.addEventListener('click', () => {
+                    playSong(song);
+                });
+                container.appendChild(item);
+            });
+        }
+
+        // Setup profile menu
+        function setupProfileMenu() {
+            const profileBtn = document.getElementById('profileBtn');
+            const profileMenu = document.getElementById('profileMenu');
+            
+            profileBtn.addEventListener('click', () => {
+                profileMenu.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.profile-menu') && !e.target.closest('.btn-profile')) {
+                    profileMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Setup mobile menu
+        function setupMobileMenu() {
+            const toggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            toggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                toggle.classList.toggle('active');
+            });
+        }
+
+        // Load user profile
+        function loadUserProfile() {
+            const userEmail = localStorage.getItem('userEmail') || 'user@example.com';
+            const userName = localStorage.getItem('userName') || 'User';
+            
+            document.getElementById('profileMenuName').textContent = userName;
+            document.getElementById('profileMenuEmail').textContent = userEmail;
+        }
+
+        // Replay mood
+        function replayMood(mood) {
+            localStorage.setItem('selectedMood', mood);
+            window.location.href = 'mood-detection.html';
+        }
+
+        // Scroll to section
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Helper functions
+        function isAuthenticated() {
+            return localStorage.getItem('authToken') !== null;
+        }
+
+        function isSongFavorited(songId) {
+            const favorites = getFavorites();
+            return favorites.some(song => song.id === songId);
+        }
+
+        function toggleFavorite(song, btn) {
+            const favorites = getFavorites();
+            const index = favorites.findIndex(s => s.id === song.id);
+            
+            if (index > -1) {
+                favorites.splice(index, 1);
+                btn.textContent = '🤍';
+                showToast('Removed from favorites', 'success');
+            } else {
+                favorites.push(song);
+                btn.textContent = '❤️';
+                showToast('Added to favorites', 'success');
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            btn.classList.toggle('active');
+        }
+
+        function playSong(song) {
+            updateMiniPlayer(song);
+            showToast(`Now playing: ${song.name}`, 'success');
+        }
+
+        function updateMiniPlayer(song) {
+            document.getElementById('playerSongName').textContent = song.name;
+            document.getElementById('playerSongArtist').textContent = song.artist;
+            document.getElementById('playerPlayIcon').textContent = '⏸️';
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function getMoodEmoji(mood) {
+            const moods = {
+                'happy': '😊',
+                'sad': '😢',
+                'angry': '😠',
+                'relaxed': '😌',
+                'romantic': '💕',
+                'focused': '🧠',
+                'energetic': '⚡',
+                'heartbroken': '💔'
+            };
+            return moods[mood] || '🎵';
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return 'Just now';
+            if (diff < 3600000) return Math.floor(diff / 60000) + 'm ago';
+            if (diff < 86400000) return Math.floor(diff / 3600000) + 'h ago';
+            return date.toLocaleDateString();
+        }
+    </script>
+</body>
+</html>
